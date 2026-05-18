@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect
 from django import forms
 from . import util
 import markdown 
+import random
 
 
 class NewTaskForm(forms.Form):
@@ -146,6 +147,14 @@ def edit(request, title):
         "form": form,
         "title": title
     })
+
+
+
+def random_page(request):
+    entries = util.list_entries()
+    random_entry = random.choice(entries)
+    return redirect ('encyclopedia:entry', title=random_entry)
+
     
 
 
